@@ -1,0 +1,60 @@
+{% comment %}
+  Prelaunch landing section
+{% endcomment %}
+
+{% assign logo = section.settings.logo | default: 'logo-mockup.png' %}
+{% assign mascot = section.settings.mascot | default: 'g-mockup1.png' %}
+
+<div class="prelaunch-header">
+  <img class="logo" src="{{ logo | image_url: width: 200 }}" alt="Logo" />
+</div>
+<section class="prelaunch-hero">
+  <h1 class="scroll-text">You made a choice to change the game.<br/>Embody the act.</h1>
+  <div class="mascot" style="background-image:url({{ mascot | image_url }});"></div>
+</section>
+<section class="choice-section">
+  <h2 class="choice-text">Choice is yours</h2>
+  <div class="goats">
+    <img src="{{ 'goat-left.png' | asset_url }}" alt="Goat left" class="goat" />
+    <img src="{{ 'goat-right.png' | asset_url }}" alt="Goat right" class="goat" />
+  </div>
+  <button class="next-button">Next</button>
+</section>
+<div class="modal email-modal">
+  <div class="modal-content">
+    <button class="close" aria-label="Close">&times;</button>
+    <h3>Join the herd</h3>
+    <form id="email-form">
+      <input type="email" name="email" placeholder="Email" required />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+<div class="modal thankyou-modal">
+  <div class="modal-content">
+    <button class="close" aria-label="Close">&times;</button>
+    <h3>Thank you!</h3>
+    <p>You are now a Founding GOAT.</p>
+  </div>
+</div>
+
+{{ 'prelaunch.css' | asset_url | stylesheet_tag }}
+{{ 'prelaunch.js'  | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Prelaunch landing",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "mascot",
+      "label": "Mascot"
+    }
+  ]
+}
+{% endschema %}
